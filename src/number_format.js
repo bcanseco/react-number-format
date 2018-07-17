@@ -624,7 +624,7 @@ class NumberFormat extends React.Component {
   }
 
   onChange(e: SyntheticInputEvent) {
-    e.persist();
+    if (e.persist) e.persist();
     const el = e.target;
     let inputValue = el.value;
     const {state, props} = this;
@@ -677,7 +677,7 @@ class NumberFormat extends React.Component {
       //change the state
       if (formattedValue !== lastValue) {
         // the event needs to be persisted because its properties can be accessed in an asynchronous way
-        e.persist();
+        if (e.persist) e.persist();
         this.setState({value : formattedValue, numAsString}, () => {
           const valueObj = this.getValueObject(formattedValue, numAsString);
           props.onValueChange(valueObj, e);

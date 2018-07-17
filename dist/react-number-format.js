@@ -808,7 +808,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	  }, {
 	    key: 'onChange',
 	    value: function onChange(e) {
-	      e.persist();
+	      if (e.persist) e.persist();
 	      var el = e.target;
 	      var inputValue = el.value;
 	      var state = this.state,
@@ -869,7 +869,7 @@ return /******/ (function(modules) { // webpackBootstrap
 	        //change the state
 	        if (formattedValue !== lastValue) {
 	          // the event needs to be persisted because its properties can be accessed in an asynchronous way
-	          e.persist();
+	          if (e.persist) e.persist();
 	          this.setState({ value: formattedValue, numAsString: numAsString }, function () {
 	            var valueObj = _this2.getValueObject(formattedValue, numAsString);
 	            props.onValueChange(valueObj, e);
@@ -1007,7 +1007,7 @@ return /******/ (function(modules) { // webpackBootstrap
 
 	      // Workaround Chrome and Safari bug https://bugs.chromium.org/p/chromium/issues/detail?id=779328
 	      // (onFocus event target selectionStart is always 0 before setTimeout)
-	      e.persist();
+	      if (e.persist) e.persist();
 	      setTimeout(function () {
 	        var el = e.target;
 	        var selectionStart = el.selectionStart,
